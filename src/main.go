@@ -1,6 +1,7 @@
 package main
 import(
-	_ "net/http"
+	// "io/ioutil"
+	"os"
 	"unicode/utf8"
 	"strings"
 	"fmt"
@@ -10,6 +11,18 @@ const (
 	CHECKMARK = 0
 	CHECKDROP =1
 )
+
+func main() {
+	f, err := os.Create("out.md")
+	if err!=nil {
+		panic(err)
+	}
+	defer f.Close()
+	// a:= "بارلىق ادامدار تۋمىسىنان ازات جانە قادىر-قاسيەتى مەن قۇقىقتارى تەڭ بولىپ دۇنيەگە كەلەدى."
+	// f.WriteString(ArabicToCyrillic(a))
+	s :="Бүкіл өмірін балаларына арнап, өмірлік серігіне адал жар, ардақты ана бола білген, бүгінде қызын -қияға, ұлын – ұяға қондырып, немерелерінің сүйікті Әжесі болып отырған асыл Анамыз, сізді бүгінгі мерейтойыңызбен шын жүректен құттықтаймыз!"
+	f.WriteString(CyrillicToArabic(s))
+}
 
 
 var mapping = map[rune]string {
@@ -113,8 +126,5 @@ func getArabicChar(char rune) string {
 	return string(char)
 }
 
-func main() {
-	s :="Бүкіл өмірін балаларына арнап, өмірлік серігіне адал жар, ардақты ана бола білген, бүгінде қызын -қияға, ұлын – ұяға қондырып, немерелерінің сүйікті Әжесі болып отырған асыл Анамыз, сізді бүгінгі мерейтойыңызбен шын жүректен құттықтаймыз!"
-	fmt.Println(CyrillicToArabic(s))
-}
+
 
