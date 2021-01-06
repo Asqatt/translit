@@ -15,7 +15,7 @@ func main(){
 
 	//or if you need this in reverse direction:
 
-	c :="arabic string needed to conversion"
+	c :="cyrillic string needed to conversion"
 	converted= translit.CyrillicToArabic(c)
 
     ..... code below
